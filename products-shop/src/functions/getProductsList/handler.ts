@@ -14,7 +14,7 @@ const getProductsList = async (event) => {
     const stockData = await scanData('aws-table-stock', dynamoDBClient);
     const resultProduct = combineProductData(productData, stockData);
 
-    const fullProductData = Object.keys(resultProduct).map(k => resultProduct[k])[0];
+    const fullProductData = Object.keys(resultProduct).map(k => resultProduct[k]);
     try {
         return formatJSONResponse({
             data: fullProductData,

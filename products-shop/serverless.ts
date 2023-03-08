@@ -5,7 +5,7 @@ import getProductsById from '@functions/getProductsById';
 import createProduct  from '@functions/createProduct';
 
 const serverlessConfiguration: AWS = {
-  service: 'products-shop',
+  service: 'products-shop-dev',
   frameworkVersion: '3',
   plugins: ['serverless-esbuild', 'serverless-auto-swagger'],
   provider: {
@@ -36,13 +36,6 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
-    },
-    autoswagger: {
-      apiType: 'http',
-      generateSwaggerOnDeploy: true,
-      schemes: ["https", "ws", "wss"],
-      excludeStages: ['production', 'anyOtherStage'],
-      host: 'mrn9o3mn0c.execute-api.eu-west-1.amazonaws.com/dev'
     },
       iamRoleStatements: [
         {

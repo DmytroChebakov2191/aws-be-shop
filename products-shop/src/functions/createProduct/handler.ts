@@ -8,8 +8,8 @@ const ddbDocumentClient = new AWS.DynamoDB.DocumentClient();
 
 const createProduct = async (event) => {
     if (!event.body) throw new ValidationError('No product data provided');
-
-    const resultData = await createProductItem(event.body);
+    const data = event.body;
+    const resultData = await createProductItem(data);
 
     return formatJSONResponse({
         data: resultData,
@@ -28,9 +28,9 @@ const createProductItem = async(body) => {
                         Put: {
                             Item: {
                                 id: productId,
-                                title: body.title,
-                                price: body.price,
-                                description: body.description
+                                title: body.title || '',
+                                price: body.price || '',
+                                description: body.description || ''
                             },
                             TableName: 'aws-shop-table'
                         },
@@ -39,7 +39,7 @@ const createProductItem = async(body) => {
                         Put: {
                             Item: {
                                 product_id: productId,
-                                count: body.count
+                                stock: body.stock || ''
                             },
                             TableName: 'aws-table-stock'
                         },

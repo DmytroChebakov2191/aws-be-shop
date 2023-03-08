@@ -15,13 +15,13 @@ const getProductsById = async (event) => {
             const queryResultProduct = await dynamoDBClient.query({
                 TableName: 'aws-shop-table',
                 KeyConditionExpression: 'id = :id',
-                ExpressionAttributeValues: {':id': +productId}
+                ExpressionAttributeValues: {':id': productId}
             }).promise();
 
             const queryResultStock = await dynamoDBClient.query({
                 TableName: 'aws-table-stock',
                 KeyConditionExpression: 'product_id = :product_id',
-                ExpressionAttributeValues: {':product_id': +productId}
+                ExpressionAttributeValues: {':product_id': productId}
             }).promise();
 
             if (!queryResultProduct.Items.length) {

@@ -4,11 +4,10 @@ export default {
     handler: `${handlerPath(__dirname)}/handler.main`,
     events: [
         {
-            http: {
-                method: 'post',
+            httpApi: {
+                method: 'POST',
                 path: '/products',
-                cors: true,
             },
         },
-        ],
+    ],
 };
