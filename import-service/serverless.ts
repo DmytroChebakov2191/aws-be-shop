@@ -16,6 +16,11 @@ const serverlessConfiguration: AWS = {
       Effect: 'Allow',
       Resource: ['arn:aws:s3:::import-files-aws-s3/*']
     },
+      {
+        Effect: 'Allow',
+        Action: ['sqs: *', 'sqs:SendMessage'],
+        Resource: ['arn:aws:sqs:eu-west-1:504799885106:catalogItemsQueue']
+      }
     ],
     apiGateway: {
       minimumCompressionSize: 1024,

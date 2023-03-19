@@ -19,3 +19,13 @@ export const formatJSONResponse = (response: Record<string, unknown>) => {
     body: JSON.stringify(response)
   }
 }
+
+export const formatInternalError = () => {
+  return {
+    statusCode: 500,
+    headers: {
+      ...defaultHeaders,
+    },
+    body: JSON.stringify({ message: 'Internal server error' })
+  }
+}
